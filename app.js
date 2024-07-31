@@ -8,22 +8,32 @@ const ctx = canvas.getContext("2d");
 canvas.width = 800;
 canvas.height = 800;
 
-// 사람 그리기
+// BMW 그리기
 
-// 팔 부분
-ctx.fillRect(200, 200, 15, 100);
-ctx.fillRect(350, 200, 15, 100);
+// 검정 바탕 부분
+ctx.arc(400, 400, 300, 0, 2*Math.PI);
+ctx.fill();
 
-// 몸 부분
-ctx.fillRect(232.5, 200, 100, 200);
+// 파란 바탕 부분
+ctx.beginPath();
+ctx.fillStyle = "#16588E";
+ctx.arc(400, 400, 230, 0, 2*Math.PI);
+ctx.fill();
 
-// 머리 부분
-ctx.arc(282.5, 140, 50, 0, 2*Math.PI);  // 원은 동쪽 부분에서 시작한다.
-ctx.fill()
-
-// 눈 부분
+// 하얀 바탕 부분
 ctx.beginPath();
 ctx.fillStyle = "white";
-ctx.arc(265, 130, 5, Math.PI, 2*Math.PI);  
-ctx.arc(300, 130, 5, Math.PI, 2*Math.PI); 
+ctx.arc(400, 400, 230, 1.5*Math.PI, 0);
+ctx.moveTo(400, 400);
+ctx.lineTo(400+230, 400);
+ctx.lineTo(400, 400-230);
+ctx.lineTo(400, 400);
+ctx.fill();
+
+ctx.beginPath();
+ctx.arc(400, 400, 230, 0.5*Math.PI, Math.PI);
+ctx.moveTo(400, 400);
+ctx.lineTo(400-230, 400);
+ctx.lineTo(400, 400+230);
+ctx.lineTo(400, 400);
 ctx.fill();
