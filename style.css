@@ -1,6 +1,6 @@
 body {
     background-color: ivory;
-    display: flex;
+    display: flex;              /* 자식 요소가 자신의 크기만큼만 넓이를 가진다 */
     justify-content: center;    /* 요소를 중앙에 정렬 */
 }
 

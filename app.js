@@ -8,30 +8,22 @@ const ctx = canvas.getContext("2d");
 canvas.width = 800;
 canvas.height = 800;
 
-// 브러쉬의 시작 위치는 왼쪽 위 부분이 0, 0이다.
-ctx.fillRect(50, 50, 100, 100);
+// 집 그리기
 
+// 기둥 부분
+ctx.fillRect(200, 200, 50, 200);    // 왼쪽
+ctx.fillRect(400, 200, 50, 200);    // 오른쪽
 
-// 파란색 네모
-// 위의 네모는 검정색, 아래 네모는 파란색으로 하기 위해 PATH를 새로 생성해야 한다.
-ctx.beginPath();                
-ctx.fillStyle = "blue";
-ctx.fillRect(50, 200, 100, 100);
+// 문 부분
+ctx.lineWidth = 2;
+ctx.strokeRect(300, 300, 50, 100);
 
-// .fillRect 함수의 내부 작동구조
-ctx.rect(200, 200, 100, 100);       // 네모 지정
-ctx.fill();                         // 네모 색 채우기
+// 천장 부분
+ctx.fillRect(200, 200, 200, 20);
 
-
-// 초록색 네모
-ctx.beginPath();
-ctx.fillStyle = "green";
-
-// .rect 함수의 내부 작동구조
-ctx.moveTo(50, 350);                // 시작 좌표
-ctx.lineTo(150, 350);               // 네모 그리기
-ctx.lineTo(150, 450);
-ctx.lineTo(50, 450);
-ctx.lineTo(50, 350);
-
+// 지붕 부분
+ctx.moveTo(200, 200);
+ctx.lineTo(450, 200);
+ctx.lineTo(325, 100);
+ctx.lineTo(200, 200);
 ctx.fill();
