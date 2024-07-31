@@ -8,22 +8,22 @@ const ctx = canvas.getContext("2d");
 canvas.width = 800;
 canvas.height = 800;
 
-// 집 그리기
+// 사람 그리기
 
-// 기둥 부분
-ctx.fillRect(200, 200, 50, 200);    // 왼쪽
-ctx.fillRect(400, 200, 50, 200);    // 오른쪽
+// 팔 부분
+ctx.fillRect(200, 200, 15, 100);
+ctx.fillRect(350, 200, 15, 100);
 
-// 문 부분
-ctx.lineWidth = 2;
-ctx.strokeRect(300, 300, 50, 100);
+// 몸 부분
+ctx.fillRect(232.5, 200, 100, 200);
 
-// 천장 부분
-ctx.fillRect(200, 200, 200, 20);
+// 머리 부분
+ctx.arc(282.5, 140, 50, 0, 2*Math.PI);  // 원은 동쪽 부분에서 시작한다.
+ctx.fill()
 
-// 지붕 부분
-ctx.moveTo(200, 200);
-ctx.lineTo(450, 200);
-ctx.lineTo(325, 100);
-ctx.lineTo(200, 200);
+// 눈 부분
+ctx.beginPath();
+ctx.fillStyle = "white";
+ctx.arc(265, 130, 5, Math.PI, 2*Math.PI);  
+ctx.arc(300, 130, 5, Math.PI, 2*Math.PI); 
 ctx.fill();
