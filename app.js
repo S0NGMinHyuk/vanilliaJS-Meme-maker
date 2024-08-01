@@ -3,9 +3,10 @@ const canvas = document.querySelector("canvas");
 const ctx = canvas.getContext("2d");                
 const lineWidth = document.querySelector("#line-width");
 const color = document.querySelector("#color");
-const colorOption = Array.from(document.getElementsByClassName("color-option"))
+const colorOption = Array.from(document.getElementsByClassName("color-option"));
 const modeBtn = document.getElementById("mode-btn");
 const resetBtn = document.getElementById("reset-btn");
+const fileInput = document.getElementById("file");
 
 // 캔버스 크기 지정
 canvas.width = 800;
@@ -15,9 +16,8 @@ canvas.height = 800;
 ctx.lineWidth = lineWidth.value;
 ctx.strokeStyle = color.value;
 
-let isFilling = false;
 let isPainting = false;
-let currColor = ctx.fillStyle;
+let isFilling = false;
 
 function onMove(event) {
     if(isPainting) {
@@ -79,19 +79,31 @@ function onCanvasClick() {
 
 // 캔버스 전체를 하얀색으로 채우는 함수
 function onResetClick() {
-ctx.fillStyle = "white"
+    let currColor = ctx.fillStyle;
+    ctx.fillStyle = "white";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = currColor;
+}
+
+function onFileChange(event) {
+    const photo = event.target.files[0];
+    const url = URL.createObjectURL(photo);
+    const image = new Image();
+    image.src = url;
+    image.onload = function() {
+        ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+        fileInput.value = null;
+    }
 }
 
 // 이벤트 함수 연결
 canvas.addEventListener("mousemove", onMove);
 canvas.addEventListener("mousedown", startPainting);
-canvas.addEventListener("mouseup", stopPainting);
-canvas.addEventListener("mouseleave", stopPainting);    // 캔버스 범위를 벗어나면 페인팅 변경
+document.addEventListener("mouseup", stopPainting);
 lineWidth.addEventListener("change", onWidthChange);
 color.addEventListener("change", onColorChange);
-colorOption.forEach(color => color.addEventListener("click", onColorClick))
+colorOption.forEach(color => color.addEventListener("click", onColorClick));
 modeBtn.addEventListener("click", onModeClick);
 canvas.addEventListener("click", onCanvasClick);
 resetBtn.addEventListener("click", onResetClick);
+fileInput.addEventListener("change", onFileChange);
